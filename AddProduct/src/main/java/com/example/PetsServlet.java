@@ -71,8 +71,6 @@ public class PetsServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
-		out.println("<b>Adding Pet</b> " + request.getParameter("name") + "<br>");
-		out.println("</body></html>");
 		
 		try {
 			
@@ -86,9 +84,11 @@ public class PetsServlet extends HttpServlet {
 				pet.setName(name);
 				pet.setColor(color);
 				pet.setPrice(BigDecimal.valueOf(Double.parseDouble(price)));
-				out.println(pet.getName() + " " + pet.getColor() + " " + pet.getPrice());
+				out.println("Adding Pet " + request.getParameter("name") + "<br><br>");
+				out.println("Click <a href='index.jsp'>here</a> to go back to main page");
 			}else {
-				out.println("Invalid Entry. All fields must be filled.<br>");
+				out.println("Invalid Entry. All fields must be filled.<br><br>");
+				out.println("Click <a href='index.jsp'>here</a> to go back to main page");
 			}
 			
 			session.save(pet);
@@ -99,6 +99,8 @@ public class PetsServlet extends HttpServlet {
 		}catch (Exception e) {
 			throw e;
 		}
+		
+		out.println("</body></html>");
 		
 	}	
 
